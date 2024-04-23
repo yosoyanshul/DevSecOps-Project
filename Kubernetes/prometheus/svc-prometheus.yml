@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: ap-prometheus-nlb
+  annotations:
+    service.beta.kubernetes.io/aws-load-balancer-type: external 
+    service.beta.kubernetes.io/aws-load-balancer-scheme: internet-facing
+    service.beta.kubernetes.io/aws-load-balancer-nlb-target-type: ip
+  namespace: ap-netflix-clone
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 80
+      targetPort: 9090
+      name: http
+  selector:
+    app: ap-netflix-prometheus-app

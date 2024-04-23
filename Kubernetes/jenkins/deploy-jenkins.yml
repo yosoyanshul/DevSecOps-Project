@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: ap-netflix-jenkins
+  name: ap-jenkins-app
+  labels:
+    app: ap-netflix-jenkins-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ap-netflix-jenkins
+  template:
+    metadata:
+      labels:
+        app: ap-netflix-jenkins
+    spec:
+      containers:
+      - name: netflix-jenkins
+        image: jenkins/jenkins
+        ports:
+        - containerPort: 8080

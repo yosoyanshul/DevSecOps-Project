@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: ap-netflix-clone
+  name: ap-prometheus-deploy
+  labels:
+    app: ap-netflix-prometheus
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ap-netflix-prometheus-app
+  template:
+    metadata:
+      labels:
+        app: ap-netflix-prometheus-app
+    spec:
+      containers:
+      - name: ap-netflix-prometheus-app
+        image: bitnami/prometheus
+        ports:
+        - containerPort: 9090

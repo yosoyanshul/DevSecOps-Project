@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: ap-netflix-sonar
+  name: ap-sonar-deploy
+  labels:
+    app: ap-netflix-sonar
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ap-netflix-sonar-app
+  template:
+    metadata:
+      labels:
+        app: ap-netflix-sonar-app
+    spec:
+      containers:
+      - name: ap-netflix-sonar-app
+        image: sonarqube
+        ports:
+        - containerPort: 9000
